@@ -171,6 +171,107 @@ div.slick-slider {
     min-width: 100%;
     *width: 100%;
 }
+// banners at homepage
+.home-banner-track {
+    display: flex;
+    flex-direction: row;
+}
+.home-list{
+    display: none;
+  }
+  .home-list.slick-initialized{
+    display: block;
+    padding: 0 10.5px;
+  }
+.home-prev {
+    left: -15px !important;
+    height: 50%;
+    width: 30px;
+    box-sizing: content-box;
+    &::before {
+        content: "<";
+        background-image: unset !important;
+        color: rgb(0, 0, 0) !important;
+        background-color: rgba(238, 238, 238, 0.863);
+        height: unset;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 100%;
+        height: 100%;
+        font-size: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    &:hover {
+        &::before {
+            color: black !important;
+            
+        }
+
+    }
+
+}
+
+.home-next {
+    right: -10px !important;
+    height: 50%;
+    width: 30px;
+    box-sizing: content-box;
+    &::before {
+        content: ">";
+        background-image: unset !important;
+        color: rgb(0, 0, 0) !important;
+        background-color: rgba(238, 238, 238, 0.863);
+        height: unset;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        width: 100%;
+        height: 100%;
+        font-size: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    &:hover {
+        &::before {
+            color: black !important;
+            
+        }
+
+    }
+}
+
+@media (min-width: 975px) {
+    .home-prev {
+
+        height: 50%;
+        max-height: 180px;
+        width: 60px;
+        &::before {
+            height: 100%;
+            font-size: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+    }
+    .home-next {
+
+        height: 50%;
+        max-height: 180px;
+        width: 60px;
+        &::before {
+            height: 100%;
+            font-size: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+    }
+}
 //brands at homepage
 .brand-prev {
     &::before {

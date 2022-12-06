@@ -20,6 +20,24 @@ shop_by_brand:
 
 {{#partial "hero"}}
     <img src="/content/pics/common/thumbnail.jpg" alt="thumbnail" style="position: absolute; opacity: 0; width:1px; height: 1px;"/>
+    <div class="featured-categories home-list" 
+data-slick='{
+    "dots": true,
+    "infinite": true,
+    "arrows": true,
+    "mobileFirst": true,
+    "slidesToShow": 1,
+    "lazyload":"progress",
+    "autoplaySpeed": 4000,
+    "speed": 1000,
+    "slidesToScroll": 1,
+    "autoplay" : true,
+    "draggable" : true,
+    "pauseOnFocus" : false
+
+    
+}'>
+</div>   
     <div class="featured-categories brand-list" 
         data-slick='{
             "dots": false,
@@ -58,6 +76,21 @@ shop_by_brand:
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
+                const homePage = [{
+            "img": "https://cdn11.bigcommerce.com/s-kzkmuqjqk9/images/stencil/original/image-manager/gift-sets8.jpg?t=1668628439",
+            "url": "/gift-sets/"
+        }, {
+            "img": "https://cdn11.bigcommerce.com/s-kzkmuqjqk9/images/stencil/original/image-manager/save-10-free-shipping-10-off.jpg?t=1668701534",
+            "url": ""
+        }, {
+            "img": "https://cdn11.bigcommerce.com/s-kzkmuqjqk9/images/stencil/original/image-manager/frame-45.jpg?t=1667592418",
+            "url": "/timeless-skin-care/"
+        }, {
+            "img": "https://cdn11.bigcommerce.com/s-kzkmuqjqk9/images/stencil/original/image-manager/kojie-san.jpg?t=1667586618",
+            "url": "/kojie-san/"
+        }
+
+        ]
         const brands = [
       {
         "img": "/content/pics/brands/brand1.jpg",
@@ -105,6 +138,15 @@ shop_by_brand:
         "url": "/t-taio/"
       }
     ]
+    homePage.forEach((item) => {
+            $('.home-list').append(`
+            <div class="home-list-banner">
+                <a href=${item.url}>
+                        <img class="home-list-image" src=${item.img}>
+                    </a>
+            </div>
+            `)
+        })
         brands.forEach((item) => {
             $(".brand-list").append(`
             <div class="brand-list-logo">

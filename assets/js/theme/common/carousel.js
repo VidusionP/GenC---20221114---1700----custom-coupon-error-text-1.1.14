@@ -10,18 +10,22 @@ export default function () {
             const $slider = slick.$list.find('.slick-slide');
             $slider.not('.slick-active').find('a, button').attr('tabindex', '-1');
             $slider.filter('.slick-active').find('a, button').attr('tabindex', '0');
-
-            $('.slick-list').first().addClass('brand-banner-list')
-            $('.slick-track').first().addClass('brand-banner-track')
-            $('.slick-prev').first().addClass('brand-prev')
-            $('.slick-next').first().addClass('brand-next')
+            $('.brand-list .slick-list').addClass('brand-banner-list')
+            $('.brand-list .slick-track').addClass('brand-banner-track')
+            $('.brand-list .slick-prev').addClass('brand-prev')
+            $('.brand-list .slick-next').addClass('brand-next')
+            $('.home-list .slick-prev').addClass('home-prev')
+            $('.home-list .slick-next').addClass('home-next')
         });
 
         $carousel.slick();
-        $('.slick-list').first().addClass('brand-banner-list')
-        $('.slick-track').first().addClass('brand-banner-track')
-        $('.slick-prev').first().addClass('brand-prev')
-        $('.slick-next').first().addClass('brand-next')
+        $('.brand-list .slick-list').addClass('brand-banner-list')
+        $('.brand-list .slick-track').addClass('brand-banner-track')
+        $('.brand-list .slick-prev').addClass('brand-prev')
+        $('.brand-list .slick-next').addClass('brand-next')
+        $('.home-list .slick-prev').addClass('home-prev')
+        $('.home-list .slick-next').addClass('home-next')
+        $('.home-list .slick-track').addClass('home-banner-track')
     }
 
 
