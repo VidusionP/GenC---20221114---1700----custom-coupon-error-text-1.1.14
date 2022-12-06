@@ -1,0 +1,44 @@
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<h1 class="page-heading">{{ page.title }}</h1>
+
+<main class="page{{#if page.sub_pages}} page--hasRightSidebar{{/if}}">
+    {{#if page.sub_pages}}
+        <div class="page-sidebar page-sidebar--right">
+            {{> components/supermarket/sidebar/subpages}}
+        </div>
+    {{/if}}
+
+    <div class="page-content {{#if theme_settings.layout '!==' 'left-sidebar'}}{{#unless page.sub_pages}}page-content--centered{{/unless}}{{/if}}">
+        <div class="page-content-body">
+            {{{region name="page_builder_content--global"}}}
+            {{{region name="page_builder_content"}}}
+            <input type="hidden" name="store-token" value="{{settings.storefront_api.token}}">
+
+            {{#replace '%%Syndicate%%' page.content}}
+                {{> components/page/rss_feed}}
+            {{else}}
+                {{{page.content}}}
+            {{/replace}}
+
+            {{#if page.feed}}
+                <ul>
+                    {{#each page.feed}}
+                        <li>
+                            <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+                            <p>{{content}}</p>
+                        </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+
+            {{{region name="page_builder_bottom"}}}
+            {{{region name="page_builder_bottom--global"}}}
+        </div>
+    </div>
+</main>
+
+{{/partial}}
+
+{{> layout/base}}

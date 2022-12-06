@@ -1,0 +1,151 @@
+---
+products:
+    new:
+        limit: {{theme_settings.product_new_count}}
+    featured:
+        limit: {{theme_settings.product_featured_count}}
+    top_sellers:
+        limit: {{theme_settings.product_top_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
+shop_by_brand:
+    limit: {{theme_settings.sidebar_shop_by_brand}}
+---
+ 
+
+{{#partial "hero"}}
+    <img src="/content/pics/common/thumbnail.jpg" alt="thumbnail" style="position: absolute; opacity: 0; width:1px; height: 1px;"/>
+    <div class="featured-categories brand-list" 
+        data-slick='{
+            "dots": false,
+            "infinite": true,
+            "arrows": true,
+            "mobileFirst": true,
+            "slidesToShow": 3,
+            "slidesToScroll": 1,
+            "autoplay" : true,
+            "draggable" : true,
+            "pauseOnFocus" : false,
+            "responsive": [
+                {
+                    "breakpoint": 801,
+                    "settings": {
+                        "slidesToShow": 6
+                    }
+                },
+                {
+                    "breakpoint": 551,
+                    "settings": {
+                        "slidesToShow": 4
+                    }
+                }
+            ]
+        }'>
+
+    </div>
+    {{{region name="home_below_menu"}}}
+    
+    <div class="container">
+        {{#each shipping_messages}}
+            {{> components/common/alert-info message}}
+        {{/each}}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        const brands = [
+      {
+        "img": "/content/pics/brands/brand1.jpg",
+        "url": "/dr-numb/"
+      },
+      {
+        "img": "/content/pics/brands/brand5.jpg",
+        "url": "/sky/"
+      },
+      {
+        "img": "/content/pics/brands/brand6.jpg",
+        "url": "/fanola/"
+      },
+      {
+        "img": "/content/pics/brands/brand7.jpg",
+        "url": "/duke-cannon/"
+      },
+      {
+        "img": "/content/pics/brands/brand8.jpg",
+        "url": "/mielle/"
+      },
+      {
+        "img": "/content/pics/brands/brand10.jpg",
+        "url": "/timeless-skin-care/"
+      },
+
+      {
+        "img": "/content/pics/brands/brand13.jpg",
+        "url": "/layrite/"
+      },
+      {
+        "img": "/content/pics/brands/brand14.jpg",
+        "url": "/maple-holistics/"
+      },
+      {
+        "img": "/content/pics/brands/brand15.jpg",
+        "url": "/mon-platin/"
+      },
+      {
+        "img": "/content/pics/brands/brand16.jpg",
+        "url": "/kojie-san/"
+      },
+      {
+        "img": "/content/pics/brands/brand17.jpg",
+        "url": "/t-taio/"
+      }
+    ]
+        brands.forEach((item) => {
+            $(".brand-list").append(`
+            <div class="brand-list-logo">
+                    <a href=${item.url}>
+                        <img class="brand-list-image" src=${item.img}>
+                    </a>
+                </div>
+            `)
+        })
+    </script>
+    <!-- <div class="container container--papathemes-section1-{{theme_settings.homepage_carousel_style}}" id="papathemes-section1-container">
+        <div class="papathemes-section1 papathemes-section1--{{theme_settings.homepage_carousel_style}}">
+            {{> components/papathemes/sections/section section="slideshow"}}
+        </div>
+    </div>     -->
+    {{{snippet 'home_content'}}}
+    {{{region name="home_below_carousel"}}}
+
+    {{#if in_development}}
+        {{> components/inhealth/demo/home-below-carousel}}
+    {{/if}}
+
+    <div class="main full">                
+        
+        {{> components/papathemes/sections/section section=theme_settings.section1}}
+        {{{region name="home_below_section1"}}}
+        {{> components/papathemes/sections/section section=theme_settings.section2}}
+        {{{region name="home_below_section2"}}}
+        {{> components/papathemes/sections/section section=theme_settings.section3}}
+        {{{region name="home_below_section3"}}}
+        {{#if in_development}}
+            {{> components/inhealth/demo/home-below-section3}}
+        {{/if}}
+        {{> components/papathemes/sections/section section=theme_settings.section4}}
+        {{{region name="home_below_section4"}}}
+        {{> components/papathemes/sections/section section=theme_settings.section5}}
+        {{{region name="home_below_section5"}}}
+    </div>
+{{/partial}}
+{{#and theme_settings.instantload is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/and}}

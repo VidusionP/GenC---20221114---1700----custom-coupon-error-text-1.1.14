@@ -1,0 +1,344 @@
+---
+brand:
+    products:
+        limit: {{theme_settings.brandpage_products_per_page}}
+shop_by_brand:
+    limit: {{theme_settings.sidebar_shop_by_brand}}
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
+---
+{{inject "brandProductsPerPage" theme_settings.brandpage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.brand.previous}}
+        <link rel="prev" href="{{pagination.brand.previous}}">
+    {{/if}}
+    {{#if pagination.brand.next}}
+        <link rel="next" href="{{pagination.brand.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+<div class="brand-header">
+    <div class="_main">
+        <h1 class="page-heading">{{brand.name}}</h1>
+        {{{region name="brand_below_header--global"}}}
+        {{{region name="brand_below_header"}}}
+        {{#if in_development}}
+            <p class="u-hideMobile u-hideTablet" style="font-size: 22px; margin-bottom: 0;">Ensure you have everything in place to secure the most relaxing sleeping conditions for both baby and yourself.</p>
+        {{/if}}
+        {{#if brand.name '==' 'Timeless Skin Care'}}
+            <p class="u-hideMobile u-hideTablet" style="font-size: 16px; margin-bottom: 0; margin-top: 10px;">With Timeless Skin Care products, you get simple, clean formulas with 
+                clinically-studied active ingredients that target your redness, acne, scarring, anti-aging needs and much more. 
+                Curated with the most natural and effective ingredients, Timeless serums are free of parabens, sulfates, 
+                fragrances and dyes and are formulated in a cruelty-free process. Turn back the clock and get more out of what you 
+                soak into your skin with Timeless skincare!
+            </p>
+        {{else if brand.name '==' 'Kojie San'}}
+            <p class="u-hideMobile u-hideTablet" style="font-size: 16px; margin-bottom: 0; margin-top: 10px;">Kojie San is a unique brand that has revolutionized the meaning of flawless skin. It gained notoriety after going viral because of its line of products that use a traditional Japanese formula. Their most popular product by far is the orange block everyone loves: the award winning Kojie San skin lightening soap. This soap carries a multitude of benefits, the most notable of which include its highly-effective skin lightening effects. With a whole line of other amazing products, we can guarantee that there’s a Kojie San product for everyone! Gen'C Beauty is an authorized distributor of Kojie San products in Canada. So, rest assured to get original Kojie San soap when you're buying from us.
+            </p>
+        {{else if brand.name '==' 'Mon Platin'}}
+            <p class="u-hideMobile u-hideTablet" style="font-size: 16px; margin-bottom: 0; margin-top: 10px;">When it comes to cosmetics products, Mon Platin has something for men, women, and even babies. Choose from a unique selection of facial, body, and hair care products that are also specifically tailored for various individual needs such as anti-aging, skin health among others. With a number of luxurious products that use unique formulas and active ingredients ranging from black caviar extract to dead sea minerals to pearl powder, your natural beauty will always be maintained with Mon Platin. 
+            </p>
+        {{/if}}
+    </div>
+    {{#if brand.image}}
+        <div class="_logo">
+            <div class="brand-image-container papathemes-brandPage-mainImage">
+                <img alt="{{brand.name}}" title="{{brand.name}}"
+                    {{#if theme_settings.lazyload_mode '===' 'disabled'}}
+                        src="{{getImage brand.image 'original'}}"
+                    {{else}}
+                        {{#if theme_settings.lazyload_mode '===' 'lazyload+lqip'}}
+                            src="{{getImageSrcset brand.image 1x='80w'}}"
+                        {{else}}
+                            src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                        {{/if}}
+                        data-src="{{getImage brand.image 'brand_main_size'}}" class="lazyload"
+                    {{/if}}
+                />
+            </div>
+        </div>
+    {{/if}}
+</div>
+
+<div class="page">
+    <div class="beautify__filters-overlay"></div>
+    <aside class="page-sidebar page-sidebar--top beautify__filters" id="sidebar-top">
+        <div class="_header">
+            <h2 class="_heading">{{lang 'search.faceted.filter_by'}}</h2>
+            <a href="#" class="_close" data-toggle="sidebar-top"><svg class="icon"><use xlink:href="#icon-close"></use></svg><span class="sr-only">{{lang 'common.close'}}</span></a>
+        </div>
+        <div class="_body" id="faceted-search-container">
+            {{{region name="brand_sidebar_top--global"}}}
+            {{{region name="brand_sidebar_top"}}}
+            {{> components/brand/sidebar}}
+            {{> components/supermarket/sidebar/recently-viewed-products}}
+            {{{region name="brand_sidebar_bottom--global"}}}
+            {{{region name="brand_sidebar_bottom"}}}
+        </div>
+    </aside>
+
+    <main class="page-content">
+        {{{region name="brand_above_products--global"}}}
+        {{{region name="brand_above_products"}}}
+
+        <div id="product-listing-container" class="
+            {{#if theme_settings.product_list_display_mode '===' 'grid2'}}mode-2
+            {{else if theme_settings.product_list_display_mode '===' 'grid3'}}mode-3
+            {{else if theme_settings.product_list_display_mode '===' 'grid6'}}mode-6
+            {{else if theme_settings.product_list_display_mode '===' 'list'}}{{#if theme_settings.show_bulk_order_mode}}mode-bo{{else}}mode-1{{/if}}{{/if}}
+        ">
+            {{#if brand.products}}
+                {{> components/brand/product-listing}}
+            {{else}}
+                <p>{{lang 'brands.no_products'}}</p>
+            {{/if}}
+        </div>
+        {{#if brand.name '==' 'Timeless Skin Care'}}
+            <div class="brand-faq u-hideMobile u-hideTablet">
+                <h2 class="page-heading">FAQS</h2>
+                <div class="page-tab">
+                    <h3 style="display: flex;" onclick="openFAQ(this)">
+                        <button class="page-button">How do you use Timeless Skin Care serums?</button>
+
+                    </h3>
+                                        <div class="page-test" style="max-height: 0px;">
+                        <div class="page-test1">
+                        <p>With Timeless Skin Care serums, it’s important to not only add one to your skincare routine, but make sure you are using it correctly. Once you have cleansed your face with a cleanser, you simply apply a few pumps or drops of the Timeless serum of your choice on your skin, rub it and let it dry for a few minutes before moving on to the next step of your routine.</p>
+                        <a onclick="openTik(this)">https://www.tiktok.com/@gencbeauty/video/7138123136234523905</a>
+                        <div class="page-test" style="max-height: 0px">
+                            <blockquote style="margin: unset;" class="tiktok-embed" cite="https://www.tiktok.com/@gencbeauty/video/7138123136234523905" data-video-id="7138123136234523905" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@gencbeauty" href="https://www.tiktok.com/@gencbeauty?refer=embed">@gencbeauty</a> Now you can get the same product you love in a larger size. We carry Timeless’ Squalane Oil in 2 oz as well as 8 oz quantities so you can maintain an even healthier glow for your skin!   What it&#39;s great for:   Regulating oil production.  Providing relief for your dry skin.  Setting your makeup.  Giving you a natural glow. #squal<a title="squalaneoil" target="_blank" href="https://www.tiktok.com/tag/squalaneoil?refer=embed">aneoil #time</a>l<a title="timeless" target="_blank" href="https://www.tiktok.com/tag/timeless?refer=embed">ess #seru</a>m<a title="serums" target="_blank" href="https://www.tiktok.com/tag/serums?refer=embed">s #faci</a>a<a title="facial" target="_blank" href="https://www.tiktok.com/tag/facial?refer=embed">l #beau</a>t<a title="beauty" target="_blank" href="https://www.tiktok.com/tag/beauty?refer=embed">y #squa</a>l<a title="squalane" target="_blank" href="https://www.tiktok.com/tag/squalane?refer=embed">ane</a> <a target="_blank" title="♬ 2 Be Loved (Am I Ready) - Lizzo" href="https://www.tiktok.com/music/2-Be-Loved-Am-I-Ready-7120288234529130498?refer=embed">♬ 2 Be Loved (Am I Ready) - Lizzo</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+                        </div>
+                        <br/><p>You can also combine multiple serums to maximize the benefits you’ll be receiving with their unique mix of key active ingredients.</p>
+                        
+                        <p>Read more: <a target="_blank" href="https://gencbeauty.com/blog/how-to-use-timeless-skincare-products/">How to use Timeless Skincare products?</a></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="page-tab">
+                    <h3 style="display: flex;" onclick="openFAQ(this)">
+                        <button class="page-button">Is Timeless Skin Care cruelty-free?</button>
+                    </h3>
+                    <div class="page-test" style="max-height: 0px;">
+                        <div class="page-test1">
+                            <p>Timeless Skin Care prides itself on only offering products that are cruelty-free and as per the standards of ethical consumer guide Ethical Elephant, Timeless Skin Care qualifies as a cruelty-free company. This means that there was no animal testing involved in the process of making these products nor were any animal byproducts used. <br/><br/>Additionally, no testing is done in countries that may allow or require it by law.
+                            </p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="page-tab">
+                    <h3 style="display: flex;" onclick="openFAQ(this)">
+                        <button class="page-button">What are some of the best Timeless Skin Care products?</button>
+                    </h3>
+                    <div class="page-test" style="max-height: 0px;">
+                        <div class="page-test1">
+                            <p>Some of the best and most popular Timeless Skin Care products include the <a href="https://gencbeauty.com/timeless-20-vitamin-c-e-ferulic-acid-serum/" target="_blank">Timeless Vitamin C Serum</a>, <a href="https://gencbeauty.com/timeless-coenzyme-q10-serum/" target="blank">Timeless Coenzyme Q10 Serum</a> and the <a href="https://gencbeauty.com/timeless-matrixyl-3000-serum/" target="_blank">Timeless Matrixyl 3000 Serum</a>.
+                            </p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="page-tab">
+                    <h3 style="display: flex;" onclick="openFAQ(this)">
+                        <button class="page-button">Is Timeless Skin Care safe for pregnancy?</button>
+                    </h3>
+                    <div class="page-test" style="max-height: 0px;">
+                        <div class="page-test1">
+                            <p>In general, you should always consult with your doctor before using or introducing any new skincare ingredient to your routine while you’re pregnant. With that said, Timeless Skin Care assures customers that their skincare products are not only natural and effective, but can be used by pregnant women without any worries.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="page-tab">
+                    <h3 style="display: flex;" onclick="openFAQ(this)">
+                        <button class="page-button">How to layer different Timeless Skin Care products?</button>
+                    </h3>
+                    <div class="page-test" style="max-height: 0px;">
+                        <div class="page-test1">
+                            <p>Timeless skincare serums should be applied after the first step of your skincare routine which is cleansing your face.Once that’s done, you can apply your serum or combination of serums. <br/><br/>Depending on the type of serum you use, you can also combine it with a moisturizer to lock in certain hydrating effects.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <script>
+                function openFAQ(x) {
+                    let setheight = x.nextElementSibling.children[0].offsetHeight
+                    let checkClass = x.nextElementSibling.classList
+                    console.log(x.children[0].classList)
+                    if (checkClass.contains('brand-add')) {
+                        checkClass.remove('brand-add')
+                        x.children[0].classList.remove('page-button1')
+                        x.classList.remove('page-tab-highlight')
+                        x.nextElementSibling.style.maxHeight = '0'
+                    } else {
+                        checkClass.add('brand-add')
+                        x.children[0].classList.add('page-button1')
+                        x.classList.add('page-tab-highlight')
+                        x.nextElementSibling.style.maxHeight = setheight + 'px'
+                    }
+                }
+                function openTik(x) {
+                    let checkClass = x.nextElementSibling.classList
+                    if (checkClass.contains('brand-add')) {
+                        checkClass.remove('brand-add')
+                        x.parentNode.parentNode.style.maxHeight= '600px'
+                        x.nextElementSibling.style.maxHeight = '0'
+                    } else {
+                        checkClass.add('brand-add')
+                        x.nextElementSibling.style.maxHeight = '800px'
+                        x.parentNode.parentNode.style.maxHeight= '1200px'
+                    }
+                }
+            </script>
+        {{else if brand.name '==' 'Kojie San'}}
+            <div class="brand-faq u-hideMobile u-hideTablet">
+                <h2 class="page-heading">FAQS</h2>
+                <div class="page-tab">
+                    <h3 style="display: flex;" onclick="openFAQ(this)">
+                        <button class="page-button">How do you use Kojie San soap effectively?</button>
+    
+                    </h3>
+                                        <div class="page-test" style="max-height: 0px;">
+                        <div class="page-test1">
+                        <p>To get effective results from the Kojie San Kojic acid soap, wet the soap and work it into a lather. Gently massage onto the desired areas on your skin and leave it for a minute. Finally, rinse it off with water. </p>
+                        <a onclick="openTik(this)">https://www.tiktok.com/@gencbeauty/video/7132946274747239681</a>
+                        <div class="page-test" style="max-height: 0px">
+                            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@gencbeauty/video/7132946274747239681" data-video-id="7132946274747239681" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@gencbeauty" href="https://www.tiktok.com/@gencbeauty?refer=embed">@gencbeauty</a> This orange block isn’t just regular soap. In fact, it’s Kojic Acid Soap and here’s the best way to use it Shop at gencbeauty.com and save $10 off your first order and 10% on orders over $120 <a title="kojicacidsoap" target="_blank" href="https://www.tiktok.com/tag/kojicacidsoap?refer=embed">#kojicacidsoap</a> <a title="kojiesan" target="_blank" href="https://www.tiktok.com/tag/kojiesan?refer=embed">#kojiesan</a> <a title="hyperpigmentation" target="_blank" href="https://www.tiktok.com/tag/hyperpigmentation?refer=embed">#hyperpigmentation</a> <a title="kojicsoap" target="_blank" href="https://www.tiktok.com/tag/kojicsoap?refer=embed">#kojicsoap</a> <a title="skincare" target="_blank" href="https://www.tiktok.com/tag/skincare?refer=embed">#skincare</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a target="_blank" title="♬ SNAP - High and Fast - Rosa Linn" href="https://www.tiktok.com/music/SNAP-High-and-Fast-7115617401885968385?refer=embed">♬ SNAP - High and Fast - Rosa Linn</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+                        </div>
+                    
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="page-tab">
+                    <h3 style="display: flex;" onclick="openFAQ(this)">
+                        <button class="page-button">How do you know if your Kojie San soap is original?</button>
+                    </h3>
+                    <div class="page-test" style="max-height: 0px;">
+                        <div class="page-test1">
+                            <p>There are many ways to tell if your Kojie San soap is an authentic and genuine product, with most of them being evident on your product’s packaging. The packaging also comes with a unique sticker with a scannable QR code to verify the product’s authenticity. However, you can also tell by where you’re buying the product from online and checking if the website is an official authorized seller of Kojie San products.
+                            </p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="page-tab">
+                    <h3 style="display: flex;" onclick="openFAQ(this)">
+                        <button class="page-button">How long does Kojie San soap take to work?</button>
+                    </h3>
+                    <div class="page-test" style="max-height: 0px;">
+                        <div class="page-test1">
+                            <p>Kojie San prides itself on the fact that its soap is clinically proven to lighten skin in as little as seven days. Many have also stated that using the soap twice daily for the first two weeks and remaining consistent has resulted in significant improvements. However, everyone is different and results can vary</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="page-tab">
+                    <h3 style="display: flex;" onclick="openFAQ(this)">
+                        <button class="page-button">Can Kojie San soap be used every day?</button>
+                    </h3>
+                    <div class="page-test" style="max-height: 0px;">
+                        <div class="page-test1">
+                            <p>Just like with any new product being introduced on your skin, you should perform a skin patch test or ideally look to gradually introduce it before using it every day. However, if your skin agrees with it and you haven’t experienced any irritation or reaction, you can definitely use Kojie San skin lightening soap everyday. In fact, for the most effective results, consider using it twice a day, once in the morning and once at night.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="page-tab">
+                    <h3 style="display: flex;" onclick="openFAQ(this)">
+                        <button class="page-button">Can men use Kojie San soap?</button>
+                    </h3>
+                    <div class="page-test" style="max-height: 0px;">
+                        <div class="page-test1">
+                            <p>The great thing about Kojie San soap is that its lovely scent is appealing to everyone. Not to mention that its various benefits work on anyone regardless of gender. So yes, men can definitely use Kojie San soap!</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="page-tab">
+                    <h3 style="display: flex;" onclick="openFAQ(this)">
+                        <button class="page-button">Can Kojie San soap remove scars, blackheads, stretch marks, pimples and acne marks?</button>
+                    </h3>
+                    <div class="page-test" style="max-height: 0px;">
+                        <div class="page-test1">
+                            <p>Besides its ability to aid in reducing the appearance of dark spots, its soothing blend of coconut oil and moisturizing Kojic acid can also help treat any imperfections such as acne scars and pimples you may have on your skin. Rather than going for a harsh chemical peel, this option is much more cost-effective and all natural! Plus it has an irresistible citrus orange fragrance!</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="page-tab">
+                    <h3 style="display: flex;" onclick="openFAQ(this)">
+                        <button class="page-button">Where can you buy authentic Kojie San soap?</button>
+                    </h3>
+                    <div class="page-test" style="max-height: 0px;">
+                        <div class="page-test1">
+                            <p>If you’re concerned about whether your Kojie San soap is authentic, you’re in luck. Their website houses a list of all their official distributors that carry original Kojie San soap. That list includes Gen’C Beauty too, so buy some soap today and save by choosing the multipack</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <script>
+                function openFAQ(x) {
+                    let setheight = x.nextElementSibling.children[0].offsetHeight
+                    let checkClass = x.nextElementSibling.classList
+                    console.log(x.children[0].classList)
+                    if (checkClass.contains('brand-add')) {
+                        checkClass.remove('brand-add')
+                        x.children[0].classList.remove('page-button1')
+                        x.classList.remove('page-tab-highlight')
+                        x.nextElementSibling.style.maxHeight = '0'
+                    } else {
+                        checkClass.add('brand-add')
+                        x.children[0].classList.add('page-button1')
+                        x.classList.add('page-tab-highlight')
+                        x.nextElementSibling.style.maxHeight = setheight + 'px'
+                    }
+                }
+                function openTik(x) {
+                    let checkClass = x.nextElementSibling.classList
+                    if (checkClass.contains('brand-add')) {
+                        checkClass.remove('brand-add')
+                        x.parentNode.parentNode.style.maxHeight= '600px'
+                        x.nextElementSibling.style.maxHeight = '0'
+                    } else {
+                        checkClass.add('brand-add')
+                        x.nextElementSibling.style.maxHeight = '800px'
+                        x.parentNode.parentNode.style.maxHeight= '1200px'
+                    }
+                }
+            </script>        
+        {{/if}}
+        {{{region name="brand_below_products--global"}}}
+        {{{region name="brand_below_products"}}}
+    </main>
+</div>
+
+<div class="page-bottom">
+        {{{region name="brand_above_description--global"}}}
+        {{{region name="brand_above_description"}}}
+    
+        {{#if brand.description}}
+            <div class="supermarket-brandPage-description">
+                {{{brand.description}}}
+            </div>
+        {{/if}}
+    
+        {{{region name="brand_below_content--global"}}}
+        {{{region name="brand_below_content"}}}
+    </div>
+
+{{/partial}}
+{{#and theme_settings.instantload is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/and}}
+

@@ -1,0 +1,213 @@
+{{#or banners.top_metadata theme_settings.instantload}}
+<div class="banners" data-banner-location="top">
+    {{#if settings.data_tag_enabled}}
+        {{#each banners.top_metadata}}
+            <div class="banner">
+                {{{this.content}}}
+            </div>
+        {{/each}}
+    {{else}}
+        {{#each banners.top_metadata}}
+            <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+                <div data-event-type="promotion-click">
+                    {{{this.content}}}
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+</div>
+{{/or}}
+<header class="header" role="banner" {{#if theme_settings.header_sticky}} data-sticky-header{{/if}}>
+    <div class="top-navigation-container">
+        <div class="store-navigation-container">
+            <div class="item" shp>
+                <a target="_blank" href="//superhairpieces.ca">
+                    <img src="/content/pics/common/shp-logo.png" alt="superhairpieces.ca">
+                    <span class="name">superhairpieces.ca</span>
+                </a>
+            </div>
+            <div class="item" genc>
+                <a href="//gencbeauty.com">
+                    <img src="/content/pics/common/genc-logo.png" alt="gencbeauty.com">
+                    <span class="name">gencbeauty.com</span>
+                </a>
+            </div>
+        </div>        
+    </div>    
+    <div class="beautify__topHeader">
+        <div class="container">
+            <div class="_announce">
+                {{{region name="header_top_announcement--global"}}}
+            </div>
+            <div class="_user">
+                <a class="navUser-action navUser-action1" href="tel:{{settings.phone_number}}" title="{{lang 'header.call_us' phone_number=settings.phone_number}}">
+
+                    <svg class="icon-top"><use xlink:href="#icon-phone1" /></svg>
+
+                    <div class="navUser-top--text">{{lang 'common.call_us'}}</div>
+                    <span class="_label">{{{lang 'header.call_us2' phone_number=settings.phone_number}}}</span>
+                </a>
+                <a class="navUser-action navUser-action1" href="mailto:support@gencbeauty.com" title="{{lang 'header.contact_us'}}">
+
+                    <svg class="icon-top"><use xlink:href="#icon-email1" /></svg>
+
+                    <div class="navUser-top--text">{{lang 'common.email_us'}}</div>
+                    <span class="_label">{{{lang 'header.contact_us'}}}</span>
+                </a>
+                <a class="navUser-action navUser-action1" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Gen'C+Beauty" title="{{lang 'header.location'}}">
+
+                    <svg class="icon-top"><use xlink:href="#icon-loc1" /></svg>
+
+                    <div class="navUser-top--text">{{lang 'common.location'}}</div>
+                    <span class="_label">{{{lang 'header.location'}}}</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+    <div class="beautify__mainHeader{{#if settings.store_logo.image}} _hasImg{{/if}} _{{theme_settings.logo_position}}">
+        <div class="container">
+            <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+                <span class="mobileMenu-toggleIcon"><span class="_icon"></span></span>
+                <span class="_label sr-only">{{lang 'common.menu'}}</span>
+            </a>
+            
+            {{#if template_file '===' 'pages/home'}}
+                <h1 class="header-logo{{#if settings.store_logo.image}} _isImg{{/if}}">
+                    {{> components/common/store-logo}}
+                </h1>
+            {{else}}
+                <div class="header-logo{{#if settings.store_logo.image}} _isImg{{/if}}">
+                    {{> components/common/store-logo}}
+                </div>
+            {{/if}}
+
+            <div class="_searchBar">
+                {{> components/common/quick-search}}
+            </div>
+
+            <ul class="navUser-section">
+                <li class="navUser-item navUser-item--region">
+                    {{{region name="header_navuser--global"}}}
+                </li>
+                <div class="_account navUser-account">
+                    {{#if customer}}
+                        <a href="{{urls.account.index}}" class="navUser-signIn navUser-action" title="{{lang 'account.breadcrumb'}}">
+
+                            <svg class="icon"><use xlink:href="#icon-login1" /></svg>
+                            <span class="customerLabel">{{lang 'common.account'}}</span>
+
+                        </a>
+                    {{else}}
+                        <a href="{{urls.auth.login}}" class="navUser-signIn navUser-action" title="{{lang 'login.heading'}}">
+
+                            <svg class="icon"><use xlink:href="#icon-login1" /></svg>
+                            <span class="customerLabel">
+                                {{lang 'common.login'}}
+                                {{#if settings.account_creation_enabled}}
+                                    | {{lang 'common.sign_up'}}
+                                {{/if}}
+                            </span>
+                        </a>
+                    {{/if}}
+                </div>
+                <li class="navUser-item navUser-item--wishlist">
+                    {{#if customer}}
+                    <a class="navUser-action" href="{{urls.account.wishlists.all}}" title="{{lang 'header.wishlist'}}">
+
+                        <svg class="icon"><use xlink:href="#icon-wishlist1" /></svg>
+
+                        <span class="_label">{{{lang 'header.wishlist'}}}</span>
+                    </a>
+                    {{else}}
+                    <a class="navUser-action" href="{{urls.auth.login}}" title="{{lang 'header.wishlist'}}">
+
+                        <svg class="icon"><use xlink:href="#icon-wishlist1" /></svg>
+
+                        <span class="_label">{{{lang 'header.wishlist'}}}</span>
+                    </a>
+                    {{/if}}
+                </li>
+            
+                {{#if customer.store_credit.value '>' 0}}
+                    <li class="navUser-item">
+                        <a class="navUser-action navUser-action--storeCredit"
+                            data-dropdown="storeCredit-dropdown"
+                            data-options="align:bottom"
+                            href="{{urls.cart}}"
+                            title="{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}">
+                            <svg class="icon"><use xlink:href="#icon-credit" /></svg>
+                            <span class="_label">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
+                        </a>
+                        <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                            {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                        </div>
+                    </li>
+                {{/if}}
+            
+                <li class="navUser-item navUser-item--compare">
+                    <a class="navUser-action navUser-action--compare" href="{{urls.compare}}" data-compare-nav title="{{lang 'common.compare'}}">
+                        <svg class="icon"><use xlink:href="#icon-compare" /></svg>
+                        <span class="_label">{{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span></span>
+                        
+                    </a>
+                </li>
+                
+                {{#if settings.gift_certificates_enabled}}
+                    <li class="navUser-item navUser-item--giftCert">
+                        <a class="navUser-action navUser-action--giftCert" href="{{urls.gift_certificate.purchase}}" title="{{lang 'common.gift_cert'}}">
+                            <svg class="icon"><use xlink:href="#icon-gift" /></svg>
+                            <span class="_label">{{lang 'common.gift_cert'}}</span>
+                        </a>
+                    </li>
+                {{/if}}
+            
+                <li class="navUser-item navUser-item--cart">
+                    <a
+                        class="navUser-action navUser-action--cart"
+                        data-cart-preview
+                        data-toggle="cart-preview-dropdown"
+                        href="{{urls.cart}}"
+                        title="{{lang 'common.cart'}}">
+                        <svg class="icon"><use xlink:href="#icon-cart1" /></svg>
+                        <span class="_label">{{lang 'common.cart'}}</span> <span class="countPill cart-quantity"></span>
+                    </a>
+                    <div class="previewCart-overlay"></div>
+                    <div class="dropdown-menu" id="cart-preview-dropdown" aria-hidden="true"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="navPages-container" id="menu" data-menu>
+        <div class="container" id="bf-fix-menu-mobile">
+            {{> components/beautify/navigation-menu}}
+
+            <div class="beautify__belowMobileMenu">
+                {{{region name="footer_below_mobile_menu--global"}}}
+                {{#if in_development}}
+                    <div style="background-color: #6AC2D2; padding: .75rem 1.5rem">
+                        <a href="#"><img src="{{cdn 'img/irish@2x.png'}}" alt="Irish" width="60" height="63" /></a>
+                        <a href="#"><img src="{{cdn 'img/trust-ecommerce-europe@2x.png'}}" alt="Trust ecommerce europe" width="64" height="52" /></a>
+                        <a href="#"><img src="{{cdn 'img/trustmark@2x.png'}}" alt="Trustmark" width="147" height="52" /></a>
+                        <a href="#"><img src="{{cdn 'img/secure-payment@2x.png'}}" alt="Trustmark" width="43" height="52" /></a>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+    <div class="container">
+        <section class="quickSearchResults" data-bind="html: results"</section>
+    </div>
+</div>
+<div class="papathemes-overlay"></div>
+
+{{#if page_type '!=' 'default'}}
+    {{{region name="header_bottom--global"}}}
+{{/if}}
+{{{region name="header_bottom"}}}
+{{{region name="header_bottom_product"}}}

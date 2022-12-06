@@ -1,0 +1,142 @@
+// =============================================================================
+// BUTTONS (CSS)
+// =============================================================================
+
+.button {
+    line-height: 1rem;
+    transition: all 0.15s ease;
+
+    + .button {
+        margin-left: 0;
+
+        @include breakpoint("medium") {
+            margin-left: spacing("half");
+        }
+    }
+}
+
+.button[disabled] {
+    cursor: not-allowed;
+}
+
+.button--icon {
+
+    svg {
+        stroke: $buttonStyle-default-color;
+    }
+
+    &:hover,
+    &:focus {
+        svg {
+            stroke: $buttonStyle-default-colorHover;
+        }
+    }
+
+    &:active {
+        svg {
+            stroke: $buttonStyle-default-colorActive;
+        }
+    }
+}
+.button--showmore {
+    text-decoration: none;
+    text-align: center;
+    border-radius: 3px !important;
+    background-color: #1f439e;
+    border: unset;
+    font-size: 14px;
+    color:white;
+    width: 100%;
+    margin: auto;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, .1);
+    padding: 0 15px;
+    height: 45px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.disable{
+        cursor: not-allowed;
+        pointer-events: none;
+        background: #e5e5e5;
+        font-weight: 700;
+        border-color: #e5e5e5 !important;
+        color: #333333;
+
+        
+    }
+    &:hover,
+    &:focus {
+        border-color: transparent;
+        background-color: rgba(stencilColor("footer-secondary-button-backgroundColor"), .7);
+    }
+    &:before {
+        content: '';
+        display: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #c5c5cf;
+        border-radius: 100%;
+        border-top: 2px solid transparent;
+        -webkit-animation: load-animate infinite linear 1s;
+        animation: load-animate infinite linear 1s;
+    }
+    &.loading {
+        pointer-events: none;
+        font-size: 0;
+        svg {
+            display: none;
+        }
+        &:before {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+}
+
+.brand--block {
+    width: 100%;
+    margin-bottom: 15px;
+     @include breakpoint ("small") {
+        width: 31.5%;
+        margin-bottom: unset;
+     }
+     @include breakpoint ("medium") {
+        width: 38%;
+     }
+}
+
+.pagination-disable {
+    cursor: not-allowed;
+    pointer-events: none;
+    background: #e5e5e5;
+    border-color: #e5e5e5 !important;
+    color: #333333;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 3px !important;
+    border: unset;
+    font-size: 14px;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, .1);
+    padding: 0 15px;
+    height: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@keyframes load-animate{
+    0%{
+      transform: rotate(0deg);
+    }
+    50%{
+      transform: rotate(180deg);
+      opacity: .35;
+    }
+    100%{
+      transform: rotate(360deg);
+    }
+  }
