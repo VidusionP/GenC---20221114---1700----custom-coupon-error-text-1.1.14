@@ -183,8 +183,11 @@ div.slick-slider {
     display: block;
     padding: 0 10.5px;
   }
+.home-list .slick-dots {
+    width: auto;
+}
 .home-prev {
-    left: -15px !important;
+    // left: -15px !important;
     height: 50%;
     width: 30px;
     box-sizing: content-box;
@@ -214,7 +217,7 @@ div.slick-slider {
 }
 
 .home-next {
-    right: -10px !important;
+    // right: -10px !important;
     height: 50%;
     width: 30px;
     box-sizing: content-box;
