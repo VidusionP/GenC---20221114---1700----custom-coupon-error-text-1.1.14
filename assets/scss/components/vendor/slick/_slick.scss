@@ -21,8 +21,7 @@
     @include carouselOpaqueBackgrounds($slick-arrow-bgColor);
     z-index: 1;
     height: remCalc(61px);
-    // margin-top: -(remCalc(15px)); // removed by Papathemes - Supermarket
-    padding: remCalc(10px);
+    padding: 0 1.5rem;
     width: remCalc(40px);
 
     &::before {
