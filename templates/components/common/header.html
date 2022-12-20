@@ -34,11 +34,24 @@
             </div>
         </div>        
     </div>    
-    <div class="beautify__topHeader">
+    <div class="beautify__topHeader" >
+
+        <!--XMAS Style-->
+        <div  class="x-mas_container">
+            <img class="xmasImg1" src="/content/pics/common/xmas1.png">
+            <img class="xmasImg2" src="/content/pics/common/xmas3.png">
+        </div>
+        <!--END Style-->
+
         <div class="container">
             <div class="_announce">
                 {{{region name="header_top_announcement--global"}}}
             </div>
+
+            <!--XMAS Style-->
+            <img class="xmasImg3"  src="/content/pics/common/xmas2.png">
+            <!--END style-->
+            
             <div class="_user">
                 <a class="navUser-action navUser-action1" href="tel:{{settings.phone_number}}" title="{{lang 'header.call_us' phone_number=settings.phone_number}}">
 
@@ -209,5 +222,5 @@
 {{#if page_type '!=' 'default'}}
     {{{region name="header_bottom--global"}}}
 {{/if}}
-{{{region name="header_bottom"}}}
+<!-- {{{region name="header_bottom"}}} -->
 {{{region name="header_bottom_product"}}}
