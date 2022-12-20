@@ -206,8 +206,67 @@
     }
 }
 
+//XMAS STYLE
+
+.x-mas_container {
+    position: absolute; 
+    bottom: 0;
+    width: 100%;
+    .xmasImg1 {
+        height: 65px; 
+        position: relative; 
+        left: 0px;
+        display: none;
+        @media (min-width: 1735px) {
+            display: inline-block;
+        }
+    }
+    .xmasImg2 {
+        height: 50px; 
+        position: relative; 
+        right: -33px; 
+        float: right;
+        @media (min-width:700px) {
+            height: 65px; 
+            position: relative; 
+            right: 0px;  
+        }
+        @media (min-width: 801px) {
+            display: none;
+        }
+        @media (min-width:1900px) {
+            display: block;
+            bottom: 8px;
+        }
+        
+    }
+    @media (min-width: 700px) {
+        top: 50%; 
+        transform: translateY(-50%); 
+        bottom: unset;
+    }
+}
+.xmasImg3 {
+    height: 30px;
+     position: absolute;
+      top: 50%;
+       left: 40%;
+        transform: translate(-50%, -50%);
+    display: none;
+    @media (min-width:1000px) {
+        display: block;
+    }
+}
+
+//END
+
 .beautify__topHeader {
     background-color: stencilColor("topHeader-bgColor");
+
+    // XMAS STYLE
+    position: relative; 
+    //END
+
     color: stencilColor("topHeader-color");
     font-size: fontSize("smaller");
 
